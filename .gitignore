@@ -64,3 +64,9 @@ target/
 .idea/
 app.sqlite
 app/app.sqlite
+
+
+#
+# env
+#
+myenv/
