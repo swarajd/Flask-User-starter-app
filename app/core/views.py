@@ -16,7 +16,7 @@ import os
 from flask import current_app
 from flask_mail import Message
 
-from manage import celery
+from jobqueue import celery, send_results
 
 core_blueprint = Blueprint('core', __name__, url_prefix='/')
 
@@ -79,10 +79,10 @@ def data_analysis():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        # mail_engine = current_app.extensions.get('mail', None)
+        mail_engine = current_app.extensions.get('mail', None)
         # print(mail_engine)
 
-        print(current_user)
+        # print(current_user)
         send_results.delay(filename, current_user.email)
 
 
@@ -93,13 +93,6 @@ def data_analysis():
 
 
     return render_template('core/data_analysis.html', form=form)
-
-# put the processing task here
-# GIANT HACK, FIX LATER
-@celery.task
-def send_results(filename, email_addr):
-    print(filename)
-    print(email_addr)
 
 @core_blueprint.route('tutorial')
 def tutorial():

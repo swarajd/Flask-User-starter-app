@@ -7,11 +7,6 @@ from celery import Celery
 
 app = create_app()
 
-# set up celery
-celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
-celery.conf.update(app.config)
-
-
 # Start a development web server if executed from the command line
 if __name__ == "__main__":
     # Manage the command line parameters such as:
