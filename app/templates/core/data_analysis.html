@@ -1,0 +1,28 @@
+{% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/app/data_analysis.css">
+
+{% from "common/form_macros.html" import render_field, render_radio_field, render_submit_field %}
+<form action="/data_analysis" method="POST" class="form analysis-form" role="form" enctype="multipart/form-data">
+
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        <label for="speciesSelect" class="step-label">Step 1: Select the species of your samples</label>
+        {{ render_field(form.species, label_visible=False) }}
+    </div>
+    <div class="form-group fileType">
+        <label for="expressionData" class="step-label">Step 2: Upload the gene expression data</label>
+        {{ render_radio_field(form.fileDataType) }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.seqFile) }}
+        <small id="fileHelp" class="form-text text-muted form-item-shift">Exponential fold changes are preferred in csv format. More information about input data format is here.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary job-submit-btn">Submit</button>
+</form>
+
+{% endblock %}

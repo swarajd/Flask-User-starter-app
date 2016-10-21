@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MyApp</title>
+        <title>Seq2Flux</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,8 +24,7 @@
         {% block body %}
         <!-- Application specific HTML -->
         <div id="header-div" class="clearfix with-margins">
-            <div class="pull-left"><a href="{{ url_for('core.home_page') }}"><span class="header-title">MyApp</span></a></div>
-            <div class="pull-right">
+            <div class="sign-in-out-btns">
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('core.user_profile_page') }}">{{ current_user.first_name or current_user.user_auth.username }}</a>
                     &nbsp; | &nbsp;
@@ -34,15 +33,26 @@
                     <a href="{{ url_for('user.login') }}">Sign in</a>
                 {% endif %}
             </div>
+            <div class="app-title"><a href="{{ url_for('core.home_page') }}"><span class="header-title">Seq2Flux</span></a></div>
         </div>
-        <div class="with-margins">
+        <div class="with-margins app-navbar">
             <a href="{{ url_for('core.home_page') }}">Home</a>
-            &nbsp; | &nbsp; <a href="{{ url_for('core.user_page') }}">User</a>
-            &nbsp; | &nbsp; <a href="{{ url_for('core.admin_page') }}">Admin</a>
+            &nbsp; | &nbsp; 
+            <a href="{{ url_for('core.user_page') }}">User</a>
+            &nbsp; | &nbsp; 
+            <a href="{{ url_for('core.admin_page') }}">Admin</a>
+            &nbsp; | &nbsp; 
+            <a href="{{ url_for('core.data_analysis') }}">Data Analysis</a>
+            &nbsp; | &nbsp; 
+            <a href="{{ url_for('core.tutorial') }}">Tutorial</a>
+            &nbsp; | &nbsp; 
+            <a href="{{ url_for('core.team') }}">Team</a>
+            &nbsp; | &nbsp; 
+            <a href="{{ url_for('core.contact') }}">Contact Us</a>
         </div>
         <hr class="no-margins"/>
 
-        <div id="main-div" class="with-margins">
+        <div id="main-div" class="centered-content">
         {% block pre_content %}{% endblock %}
 
         {# One-time system messages called Flash messages #}
@@ -67,8 +77,8 @@
         <br/>
         <hr class="no-margins"/>
         <div id="footer-div" class="clearfix with-margins">
-            <div class="pull-left">MyApp v1.0</div>
-            <div class="pull-right">&copy; 2014 MyCorp</div>
+            <div class="pull-left">Seq2Flux v1.0</div>
+            <div class="pull-right">&copy; Virginia Tech BSE</div>
         </div>
 
         <!-- Application specific JS -->

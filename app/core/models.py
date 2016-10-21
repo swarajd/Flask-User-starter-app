@@ -5,7 +5,7 @@
 from flask_user import UserMixin
 from flask_user.forms import RegisterForm
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, validators
+from wtforms import StringField, SubmitField, SelectField, RadioField, FileField, validators
 from app import db
 
 
@@ -63,3 +63,25 @@ class UserProfileForm(Form):
     last_name = StringField('Last name', validators=[
         validators.DataRequired('Last name is required')])
     submit = SubmitField('Save')
+
+class DataAnalysisForm(Form):
+    species = SelectField('species', choices=[
+        ('ecoli', 'Escherichia Coli'),
+        ('yeast', 'Saccharomyces Cerevisiae')
+    ], validators=[validators.Required()])
+    fileDataType = RadioField('fileType', choices=[
+        ('csv', 'Exponential fold changes (.csv)'),
+        ('fasta', 'Raw RNA-seq data (.fasta/.fastq) (does not work yet!)')
+    ], validators=[validators.Required()], default='csv')
+
+    def is_data_file(message="only csv or fasta files", extensions=None):
+        if (not extensions):
+            extensions = ['csv', 'fasta', 'fastq']
+        def _is_data_file(form, field):
+            # print(field.data)
+            if (not field.data or field.data.filename.split('.')[-1] not in extensions):
+                raise validators.ValidationError(message)
+        return _is_data_file
+
+    seqFile = FileField('seq file', validators=[validators.Required('seq file required'), is_data_file()])
+

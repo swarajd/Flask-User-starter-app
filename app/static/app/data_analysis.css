@@ -1,0 +1,33 @@
+/*form {
+    margin-top: 30px;
+}*/
+
+.small-select {
+    width: 250px;
+}
+
+.step-label {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.form-item-shift {
+    margin-left: 30px;
+}
+
+input[type=radio] {
+    margin-left: 30px;
+}
+
+.job-submit-btn {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.fileType > ul {
+    list-style-type: none;
+}
+
+.fileType > ul > li > input {
+    margin-left: 0;
+}

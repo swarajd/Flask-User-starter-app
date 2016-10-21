@@ -2,7 +2,7 @@
 hr { border-color: #cccccc; margin: 0px; }
 
 /**** header, main and footer divs ****/
-.header-title { font-size: 30px; }
+.header-title { font-size: 60px; }
 
 /**** class-based style modifiers ****/
 
@@ -10,4 +10,21 @@ hr { border-color: #cccccc; margin: 0px; }
 
 .with-margins { margin: 10px; }
 
+.centered-content {
+    margin: 0 auto;
+    max-width: 60em;
+}
+
 .col-centered { float: none; margin: 0 auto; }
+
+.sign-in-out-btns {
+    text-align: right;
+}
+
+.app-title {
+    text-align: center;
+}
+
+.app-navbar {
+    text-align: center;
+}

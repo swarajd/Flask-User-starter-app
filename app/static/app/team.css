@@ -1,0 +1,13 @@
+.team-member {
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+}
+
+.team-members {
+    margin-top: 30px;
+}
+
+.team-member > img {
+    width: 80%;
+}

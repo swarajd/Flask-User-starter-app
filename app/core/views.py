@@ -7,7 +7,11 @@ from flask import redirect, render_template, render_template_string, Blueprint
 from flask import request, url_for
 from flask_user import current_user, login_required, roles_accepted
 from app import app, db
-from app.core.models import UserProfileForm
+from app.core.models import UserProfileForm, DataAnalysisForm
+
+from werkzeug.datastructures import CombinedMultiDict
+from werkzeug.utils import secure_filename
+import os
 
 core_blueprint = Blueprint('core', __name__, url_prefix='/')
 
@@ -52,6 +56,43 @@ def user_profile_page():
     # Process GET or invalid POST
     return render_template('core/user_profile_page.html',
                            form=form)
+
+@core_blueprint.route('data_analysis', methods=['GET', 'POST'])
+@login_required
+def data_analysis():
+
+    # print(request.form)
+    form = DataAnalysisForm(CombinedMultiDict((request.files, request.form)))
+
+    # print(form)
+
+    if (request.method == 'POST' and form.validate()):
+
+        # print(request.form)
+        # print(request.files)
+        file = request.files['seqFile']
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        from app import mail
+
+        # Redirect to home page
+        return redirect(url_for('core.home_page'))
+
+
+    return render_template('core/data_analysis.html', form=form)
+
+@core_blueprint.route('tutorial')
+def tutorial():
+    return render_template('core/tutorial.html')
+
+@core_blueprint.route('team')
+def team():
+    return render_template('core/team.html')
+
+@core_blueprint.route('contact')
+def contact():
+    return render_template('core/contact.html')
 
 
 # Register blueprint
