@@ -3,8 +3,13 @@
 # - Developers can run it from the command line: python runserver.py
 
 from app import create_app
+from celery import Celery
 
 app = create_app()
+
+# set up celery
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
 
 
 # Start a development web server if executed from the command line

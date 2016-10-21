@@ -3,7 +3,7 @@
 # Authors: Ling Thio <ling.thio@gmail.com>
 
 
-from flask import redirect, render_template, render_template_string, Blueprint
+from flask import redirect, flash, render_template, render_template_string, Blueprint
 from flask import request, url_for
 from flask_user import current_user, login_required, roles_accepted
 from app import app, db
@@ -15,6 +15,8 @@ import os
 
 from flask import current_app
 from flask_mail import Message
+
+from manage import celery
 
 core_blueprint = Blueprint('core', __name__, url_prefix='/')
 
@@ -77,14 +79,27 @@ def data_analysis():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        mail_engine = current_app.extensions.get('mail', None)
-        print(mail_engine)
+        # mail_engine = current_app.extensions.get('mail', None)
+        # print(mail_engine)
+
+        print(current_user)
+        send_results.delay(filename, current_user.email)
+
+
+        flash('processing job scheduled!')
 
         # Redirect to home page
-        return redirect(url_for('core.home_page'))
+        return redirect(url_for('core.data_analysis'))
 
 
     return render_template('core/data_analysis.html', form=form)
+
+# put the processing task here
+# GIANT HACK, FIX LATER
+@celery.task
+def send_results(filename, email_addr):
+    print(filename)
+    print(email_addr)
 
 @core_blueprint.route('tutorial')
 def tutorial():
