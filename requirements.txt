@@ -19,3 +19,5 @@ pytest==2.7.2
 pytest-flask==0.8.1
 pytest-cov==1.8.1
 
+# task queue stuff
+celery==3.1.24

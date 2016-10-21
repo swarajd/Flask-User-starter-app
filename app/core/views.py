@@ -13,6 +13,9 @@ from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.utils import secure_filename
 import os
 
+from flask import current_app
+from flask_mail import Message
+
 core_blueprint = Blueprint('core', __name__, url_prefix='/')
 
 
@@ -74,7 +77,8 @@ def data_analysis():
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        from app import mail
+        mail_engine = current_app.extensions.get('mail', None)
+        print(mail_engine)
 
         # Redirect to home page
         return redirect(url_for('core.home_page'))
