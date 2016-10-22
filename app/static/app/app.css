@@ -10,15 +10,22 @@ hr { border-color: #cccccc; margin: 0px; }
 
 .with-margins { margin: 10px; }
 
+.centered-nav {
+    margin: 0 auto;
+    padding: 15px 0px;
+    width: 80%;
+}
+
 .centered-content {
     margin: 0 auto;
-    max-width: 60em;
+    max-width: 90em;
 }
 
 .col-centered { float: none; margin: 0 auto; }
 
 .sign-in-out-btns {
     text-align: right;
+    font-size: 2em;
 }
 
 .app-title {
@@ -26,5 +33,33 @@ hr { border-color: #cccccc; margin: 0px; }
 }
 
 .app-navbar {
+    text-align: center;
+    font-size: 2em;
+    /*font-color: #DDD;*/
+}
+
+.app-navbar > a {
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+/*.app-navbar > a {
+    background-color: #444;
+}*/
+
+.visited {
+    color: #2c3e50;
+}
+
+.logo {
+    width: 30%;
+}
+
+body {
+    background-image: url("/static/images/paperback.png");
+    background-size: cover;
+}
+
+.centered-text {
     text-align: center;
 }

@@ -19,7 +19,16 @@
     </div>
     <div class="form-group">
         {{ render_field(form.seqFile) }}
-        <small id="fileHelp" class="form-text text-muted form-item-shift">Exponential fold changes are preferred in csv format. More information about input data format is here.</small>
+        <div id="fileHelp" class="form-text text-muted form-item-shift">
+        <p><b>Input format: csv</b></p>
+        <p>Input values: Exponential fold change of gene expression levels (base = 2) with definded control dataset</p>
+        <p>Upload limitation: none</p>
+        <p>Note: This is preferred input format, which can be processed with high-throughput manners. You can receive your results in 5 minutes in your email box. Click here to download the demo input file.</p>
+        <p><b>Input format: FASTA/FASTQ</b></p>
+        <p>Input values: cDNA sequence</p>
+        <p>Upload limitation: 5 files/month</p>
+        <p>Note: This is unfavorable input format, which requires two weeks to be processed. You need to wait for two weeks to receive the results. In addition, due to the limitation of computational capability, one user can only upload 5 files/month.</p>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary job-submit-btn">Submit</button>

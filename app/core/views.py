@@ -77,9 +77,8 @@ def data_analysis():
         # print(request.files)
         file = request.files['seqFile']
         filename = secure_filename(file.filename)
+        print(app.config['UPLOAD_FOLDER'])
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-        mail_engine = current_app.extensions.get('mail', None)
         # print(mail_engine)
 
         # print(current_user)

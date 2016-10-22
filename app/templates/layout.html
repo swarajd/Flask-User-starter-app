@@ -26,29 +26,34 @@
         <div id="header-div" class="clearfix with-margins">
             <div class="sign-in-out-btns">
                 {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('core.user_profile_page') }}">{{ current_user.first_name or current_user.user_auth.username }}</a>
+                    <a href="{{ url_for('core.user_profile_page') }}" >{{ current_user.first_name or current_user.user_auth.username }}</a>
                     &nbsp; | &nbsp;
                     <a href="{{ url_for('user.logout') }}">Sign out</a>
                 {% else %}
                     <a href="{{ url_for('user.login') }}">Sign in</a>
                 {% endif %}
             </div>
-            <div class="app-title"><a href="{{ url_for('core.home_page') }}"><span class="header-title">Seq2Flux</span></a></div>
+            <div class="app-title">
+            <a href="{{ url_for('core.home_page') }}"><img class="logo" src="/static/images/logo.png"></a>
+            <!-- <img src="/static/images/logo.png"> -->
+            <!-- <span class="header-title">Seq2Flux</span> -->
+
+            </div>
         </div>
-        <div class="with-margins app-navbar">
-            <a href="{{ url_for('core.home_page') }}">Home</a>
-            &nbsp; | &nbsp; 
+        <div class="centered-nav app-navbar">
+            <a href="{{ url_for('core.home_page') }}" {%- if request.path == "/" %} class="visited" {% endif %}>Home</a>
+<!--             &nbsp; | &nbsp; 
             <a href="{{ url_for('core.user_page') }}">User</a>
             &nbsp; | &nbsp; 
-            <a href="{{ url_for('core.admin_page') }}">Admin</a>
+            <a href="{{ url_for('core.admin_page') }}">Admin</a> -->
             &nbsp; | &nbsp; 
-            <a href="{{ url_for('core.data_analysis') }}">Data Analysis</a>
+            <a href="{{ url_for('core.data_analysis') }}" {%- if request.path == "/data_analysis" %} class="visited" {% endif %}>Data Analysis</a>
             &nbsp; | &nbsp; 
-            <a href="{{ url_for('core.tutorial') }}">Tutorial</a>
+            <a href="{{ url_for('core.tutorial') }}" {%- if request.path == "/tutorial" %} class="visited" {% endif %}>Tutorial</a>
             &nbsp; | &nbsp; 
-            <a href="{{ url_for('core.team') }}">Team</a>
+            <a href="{{ url_for('core.team') }}" {%- if request.path == "/team" %} class="visited" {% endif %}>Team</a>
             &nbsp; | &nbsp; 
-            <a href="{{ url_for('core.contact') }}">Contact Us</a>
+            <a href="{{ url_for('core.contact') }}" {%- if request.path == "/contact" %} class="visited" {% endif %}>Contact Us</a>
         </div>
         <hr class="no-margins"/>
 
@@ -77,8 +82,8 @@
         <br/>
         <hr class="no-margins"/>
         <div id="footer-div" class="clearfix with-margins">
-            <div class="pull-left">Seq2Flux v1.0</div>
-            <div class="pull-right">&copy; Virginia Tech BSE</div>
+            <div class="centered-text">© 2016 Biomolecular Engineering Lab, Virginia Tech. 1230 Washington St. SW, Suite 302, HABB1, Virginia Tech, Blacksburg, VA. 24061.</div>
+            <!-- <div class="pull-right">&copy; Virginia Tech BSE</div> -->
         </div>
 
         <!-- Application specific JS -->

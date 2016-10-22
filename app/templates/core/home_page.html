@@ -1,9 +1,12 @@
 {% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
 
 {% block content %}
-<h1>Home page</h1>
 
-<p>This page is accessible to any user (signed in or not)</p>
+<link rel="stylesheet" href="/static/app/home.css">
+
+<img src="/static/images/flowchart1.png" class="fit-img">
+
+<p>Seq2Flux is a web-based computational platform for analyzing the transcriptomics data  to accurately predict comprehensive phenotypes (e.g., fold changes of growth rate, sugar utilization, chemical synthesis rate, etc.) via an advanced artificial intelligence (AI) model (i.e., auto-encoder neuron network) with a high-throughput manner. </p>
 
 {% if not current_user.is_authenticated %}
 <p>
@@ -14,9 +17,14 @@ To view the User page, you must
 {% endif %}
 
 <p>
-    Test users:<br/>
-    - user@example.com / Password1<br/>
-    - admin@example.com / Password1
+    Seq2Flux is implemented with the following unique features:<br/>
+    1. Comprehensive and accurate phenotype predictions from large-scale transcriptomics data<br/>
+    2. High-throughput analysis of transcriptomics data<br/>
+    3. User-friendly interface and job management system<br/>
+</p>
+
+<p>
+    You can upload either processed  transcriptomics data (i.e., fold changes of gene expression levels with corresponding statistical values) or raw sequencing machine readouts (i.e. RNA-seq sequencing data) and click the "submit the job" button! The comprehensive physiological simulations of your samples will be sent to your email box immediately. You can also follow your job status via the job management system in your account. With Seq2Flux platform, you will experience the power of artificial intelligence applying to biology.
 </p>
 
 {% endblock %}

@@ -71,7 +71,7 @@ class DataAnalysisForm(Form):
     ], validators=[validators.Required()])
     fileDataType = RadioField('fileType', choices=[
         ('csv', 'Exponential fold changes (.csv)'),
-        ('fasta', 'Raw RNA-seq data (.fasta/.fastq) (does not work yet!)')
+        ('fasta', 'Raw RNA-seq data (.fasta/.fastq) (coming soon!)')
     ], validators=[validators.Required()], default='csv')
 
     def is_data_file(message="only csv or fasta files", extensions=None):
@@ -83,5 +83,5 @@ class DataAnalysisForm(Form):
                 raise validators.ValidationError(message)
         return _is_data_file
 
-    seqFile = FileField('seq file', validators=[validators.Required('seq file required'), is_data_file()])
+    seqFile = FileField("Data input", validators=[validators.Required('seq file required'), is_data_file()])
 
